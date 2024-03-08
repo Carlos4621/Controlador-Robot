@@ -4,7 +4,7 @@
 
 #include "ServerParams.h"
 #include <boost/asio.hpp>
-#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
 #include <boost/serialization/vector.hpp>
 #include <iostream>
 
@@ -13,7 +13,7 @@ namespace My {
 	/*
 		TODO:
 		- Manejar desconexiones y reconexiones
-		- Manejar asincronía
+		- Manejar asincronï¿½a
 	*/
 
 	class WiFiDeserializer {
@@ -21,7 +21,7 @@ namespace My {
 
 		/// @brief Constructor base
 		/// @param context Contesto del OS
-		/// @param serverParams Parámetros del servidor
+		/// @param serverParams Parï¿½metros del servidor
 		WiFiDeserializer(boost::asio::io_context& context, const ServerParams& serverParams);
 
 		WiFiDeserializer(const WiFiDeserializer&) = default;
@@ -30,12 +30,12 @@ namespace My {
 		WiFiDeserializer& operator=(const WiFiDeserializer&) = default;
 		WiFiDeserializer& operator=(WiFiDeserializer&&) noexcept = default;
 
-		/// @brief Espera a una petición de conexión
+		/// @brief Espera a una peticiï¿½n de conexiï¿½n
 		void waitConnection();
 
 		/// @brief Recibe data serializada
 		/// @tparam T Tipo de dato a recibir
-		/// @param toReceive Donde se guardará la información desearilizada
+		/// @param toReceive Donde se guardarï¿½ la informaciï¿½n desearilizada
 		template<typename T>
 		void receiveData(T& toReceive);
 
@@ -68,7 +68,7 @@ namespace My {
 
 		std::istringstream outputString{ std::string(buffer_m.data(), receivedDataSize_m) };
 
-		boost::archive::binary_iarchive binaryArchive{ outputString };
+		boost::archive::text_iarchive binaryArchive{ outputString };
 
 		binaryArchive >> toDeserialize;
 	}

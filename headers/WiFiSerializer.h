@@ -4,19 +4,19 @@
 
 #include "ServerParams.h"
 #include <boost/asio.hpp>
-#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
 #include <boost/serialization/vector.hpp>
 #include <opencv2/opencv.hpp>
 
 namespace My {
 
-	/// @brief Clase que permite una conexión TCP y el envío de datos serializados
+	/// @brief Clase que permite una conexiï¿½n TCP y el envï¿½o de datos serializados
 	class WiFiSerializer {
 	public:
 
 		/// @brief Constructor base
 		/// @param context Contexto del OS
-		/// @param serverParams Parámetros del servidor a conectar
+		/// @param serverParams Parï¿½metros del servidor a conectar
 		WiFiSerializer(boost::asio::io_context& context, const ServerParams& serverParams);
 
 		WiFiSerializer(const WiFiSerializer&) = default;
@@ -25,10 +25,10 @@ namespace My {
 		WiFiSerializer& operator=(const WiFiSerializer&) = default;
 		WiFiSerializer& operator=(WiFiSerializer&&) noexcept = default;
 
-		/// @brief Inicia la conexión con otro socket
+		/// @brief Inicia la conexiï¿½n con otro socket
 		void startConnection();
 
-		/// @brief Envía data a otro socket
+		/// @brief Envï¿½a data a otro socket
 		/// @tparam T Tipo de dato a enviar
 		/// @param toSend Data a enviar
 		template<typename T>
@@ -47,7 +47,7 @@ namespace My {
 	inline std::string WiFiSerializer::serializeData(const T& toSerialize) {
 		std::ostringstream inputString;
 
-		boost::archive::binary_oarchive binaryArchive{ inputString };
+		boost::archive::text_oarchive binaryArchive{ inputString };
 
 		binaryArchive << toSerialize;
 
