@@ -1,0 +1,4 @@
+/home/carlos4621/Controlador Robot/build/CMakeFiles/cliente.dir
+/home/carlos4621/Controlador Robot/build/CMakeFiles/servidor.dir
+/home/carlos4621/Controlador Robot/build/CMakeFiles/edit_cache.dir
+/home/carlos4621/Controlador Robot/build/CMakeFiles/rebuild_cache.dir
