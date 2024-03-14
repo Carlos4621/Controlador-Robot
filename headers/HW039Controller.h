@@ -51,6 +51,13 @@ namespace My{
         /// @param speed Porcentaje del duty cycle
         void setAntihorary(const float& speed);
 
+        /// @brief Envia el porcentaje deseado al pin PWM siguiendo estas condiciones:
+        ///        si x > 0 entonces this->setHorary(x)
+        ///        si x < 0 entonces this->setAntihorary(std::abs(x))
+        ///        de otra manera this->stopMotors()
+        /// @param relativeSpeed 
+        void setRelative(const float& relativeSpeed);
+
     private:
         HW039ControllerParams params_m;
 

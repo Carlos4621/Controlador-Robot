@@ -1,14 +1,14 @@
 #include "HW039Controller.h"
 #include <stdexcept>
+#include <compare>
 
 My::HW039Controller::HW039Controller(const int &chipNumnber, const uint8_t &RPWMPin,
  const uint8_t &LWPMPin, const float &frecuency) : 
-    params_m{chipNumnber, RPWMPin, LWPMPin, frecuency} {
-    claimOutputs();
+    HW039Controller{ {chipNumnber, RPWMPin, LWPMPin, frecuency} } {
 }
 
-My::HW039Controller::HW039Controller(const HW039ControllerParams &params) {
-
+My::HW039Controller::HW039Controller(const HW039ControllerParams &params) : params_m{params} {
+    claimOutputs();
 }
 
 My::HW039Controller::~HW039Controller() noexcept {
@@ -32,7 +32,22 @@ void My::HW039Controller::setAntihorary(const float& speed) {
     motorHelper(false, speed);
 }
 
-void My::HW039Controller::claimOutputs() {
+void My::HW039Controller::setRelative(const float &relativeSpeed) {
+    if (relativeSpeed > 0) {
+        setHorary(relativeSpeed);
+    }
+    else if (relativeSpeed < 0) {
+        setAntihorary(std::abs(relativeSpeed));
+    }
+    else {
+        stopMotor();
+    }
+    
+    
+}
+
+void My::HW039Controller::claimOutputs()
+{
     for(const auto& i : {params_m.RPWMPin, params_m.LPWMPin}) {
         if (lgGpioClaimOutput(params_m.chipNumber, 0, i, 0) != LG_OKAY) {
             throw std::runtime_error{"Unable to claim the outputs"};
