@@ -7,6 +7,11 @@
 
 namespace My{
 
+    /*
+        TODO:
+        - Hacer que el destructor libere los pines usados
+    */
+
     /// @brief Clase que permite el manejo de un driver de motores HW-039
     class HW039Controller {
     public:
