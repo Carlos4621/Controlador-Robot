@@ -7,6 +7,14 @@
 
 namespace My{
 
+    struct HW039ControllerParams {
+        int chipNumber;
+        uint8_t RPWMPin;
+        uint8_t LPWMPin;
+        float frecuency;
+    };
+    
+
     /// @brief Clase que permite el manejo de un driver de motores HW-039, la aplicacion de
     /// pulsos PWM tarda un instante en aplicar, tenlo en cuenta
     class HW039Controller {
@@ -19,6 +27,10 @@ namespace My{
         /// @param frecuency Resolucion del PWM
         HW039Controller(const int& chipNumnber, const uint8_t& RPWMPin,
             const uint8_t& LWPMPin, const float& frecuency);
+
+        /// @brief Constructor con paquete de parametros
+        /// @param params Parametros para el controlador
+        explicit HW039Controller(const HW039ControllerParams& params);
 
         HW039Controller(const HW039Controller&) = default;
         HW039Controller(HW039Controller&&) noexcept = default;
@@ -40,10 +52,7 @@ namespace My{
         void setAntihorary(const float& speed);
 
     private:
-        uint8_t RPWMPin_m;
-        uint8_t LPWMPin_m;
-        float freuency_m;
-        int chipNumber_m;
+        HW039ControllerParams params_m;
 
         void claimOutputs();
 
