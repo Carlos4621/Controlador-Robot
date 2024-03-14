@@ -2,9 +2,15 @@
 #include <stdexcept>
 
 My::HW039Controller::HW039Controller(const int &chipNumnber, const uint8_t &RPWMPin,
- const uint8_t &LWPMPin, const uint16_t &frecuency) : chipNumber_m{chipNumnber},
+ const uint8_t &LWPMPin, const float &frecuency) : chipNumber_m{chipNumnber},
  RPWMPin_m{RPWMPin}, LPWMPin_m{LWPMPin}, freuency_m{frecuency} {
     claimOutputs();
+}
+
+My::HW039Controller::~HW039Controller() noexcept {
+    for (const auto &i : {RPWMPin_m, LPWMPin_m}) {
+        lgGpioFree(chipNumber_m, i);
+    }
 }
 
 void My::HW039Controller::stopMotor() const noexcept {
@@ -12,12 +18,12 @@ void My::HW039Controller::stopMotor() const noexcept {
     stopAntiHorary();
 }
 
-void My::HW039Controller::setHorary(const std::uint8_t &speed) {
+void My::HW039Controller::setHorary(const float& speed) {
     stopAntiHorary();
     motorHelper(true, speed);
 }
 
-void My::HW039Controller::setAntihorary(const std::uint8_t &speed) {
+void My::HW039Controller::setAntihorary(const float& speed) {
     stopHorary();
     motorHelper(false, speed);
 }
@@ -31,16 +37,16 @@ void My::HW039Controller::claimOutputs() {
 }
 
 void My::HW039Controller::stopHorary() const noexcept {
-    motorHelper(true, 0);
+    motorHelper(true, 0.f);
 }
 
 void My::HW039Controller::stopAntiHorary() const noexcept {
-    motorHelper(false, 0);
+    motorHelper(false, 0.f);
 }
 
-void My::HW039Controller::motorHelper(const bool &horary, const uint8_t& speed) const noexcept {
+void My::HW039Controller::motorHelper(const bool &horary, const float& speed) const noexcept {
     if (lgTxPwm(chipNumber_m, (horary ? RPWMPin_m : LPWMPin_m), 
-            (speed == 0 ? 0 : freuency_m), speed, 0, 0) != LG_OKAY) {
+            (speed == 0.f ? 1.f : freuency_m), speed, 0, 0) != LG_OKAY) {
         std::runtime_error{"Unable to manage the motor"};
     }
 }
