@@ -25,6 +25,3 @@ target_link_libraries(servidor ${OpenCV_LIBS})
 target_link_libraries(servidor Boost::boost Boost::serialization)
 target_link_libraries(servidor sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
 target_link_libraries(servidor lgpio)
-
-add_executable(hazmat ${SOURCES} hazmat.cpp)
-target_link_libraries(hazmat ${OpenCV_LIBS})
