@@ -53,7 +53,7 @@ int main() {
 
 		cc.sendCameraData();
 
-		cv::waitKey(1.f / 30.f);
+		cv::waitKey(1);
 	}
 }
 

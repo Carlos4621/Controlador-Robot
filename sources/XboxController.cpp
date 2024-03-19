@@ -41,6 +41,7 @@ void My::XboxController::readButtons() {
 }
 
 void My::XboxController::readAxis() {
+	// TODO: Arreglar o eliminar
 	static const auto getAxis{ [this](const auto& axis) { return sf::Joystick::getAxisPosition(controllerNumber_m, axis); } };
 
 	controllerData_m.rightStick.first = getAxis(sf::Joystick::Axis::U);
@@ -48,6 +49,4 @@ void My::XboxController::readAxis() {
 
 	controllerData_m.leftStick.first = getAxis(sf::Joystick::Axis::X);
 	controllerData_m.leftStick.second = getAxis(sf::Joystick::Axis::Y);
-
-	
 }
