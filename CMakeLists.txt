@@ -26,7 +26,7 @@ target_link_libraries(servidor Boost::boost Boost::serialization)
 target_link_libraries(servidor sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
 target_link_libraries(servidor lgpio)
 
-add_executable(hazmat ${SOURCES} inferenceTest.cpp)
+add_executable(hazmat ${SOURCES} tests/inferenceTest.cpp)
 target_link_libraries(hazmat ${OpenCV_LIBS})
 target_link_libraries(hazmat Boost::boost Boost::serialization)
 target_link_libraries(hazmat sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
