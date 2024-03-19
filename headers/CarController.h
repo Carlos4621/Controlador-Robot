@@ -33,8 +33,6 @@ namespace My {
         /// @brief Aplica los ultimos valores leidos de receiveData()
         void applyChanges();
 
-        
-
     private:
         std::pair<HW039Controller, HW039Controller> motors_m;
 

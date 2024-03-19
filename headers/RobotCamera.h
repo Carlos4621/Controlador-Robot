@@ -13,12 +13,12 @@ namespace My {
 		- Agregar funcionamiento de reconocimiento
 	*/
 
-	/// @brief Clase que representa una cámara que ofrece funciones de reconocimiento
+	/// @brief Clase que representa una cï¿½mara que ofrece funciones de reconocimiento
 	class RobotCamera {
 	public:
 
 		/// @brief Constructor base
-		/// @param cameraID ID de la cámara a usar
+		/// @param cameraID ID de la cï¿½mara a usar
 		explicit RobotCamera(const uint8_t& cameraID);
 
 		RobotCamera(const RobotCamera&) = default;
@@ -27,12 +27,12 @@ namespace My {
 		RobotCamera& operator=(const RobotCamera&) = default;
 		RobotCamera& operator=(RobotCamera&&) noexcept = default;
 
-		/// @brief Toma un frame de la cámara
+		/// @brief Toma un frame de la cï¿½mara
 		void updateCamara();
 
-		/// @brief Obtiene la última imagen guardada con updateCamara()
-		/// @return La última imagen guardada
-		cv::Mat getLastImage() const noexcept;
+		/// @brief Obtiene la ï¿½ltima imagen guardada con updateCamara()
+		/// @return La ï¿½ltima imagen guardada
+		[[nodiscard]] cv::Mat getLastImage() const noexcept;
 
 	private:
 		cv::VideoCapture camera_m;

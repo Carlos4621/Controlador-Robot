@@ -28,11 +28,11 @@ namespace My {
 
 		/// @brief Obtiene la �ltima informaci�n guardada con updateController()
 		/// @return Data del mando
-		XboxControllerData getControllerData() const noexcept;
+		[[nodiscard]] XboxControllerData getControllerData() const noexcept;
 
 		/// @brief Verifica si el mando est� conectado
 		/// @return True si el mando est� conectado, False sino
-		bool isConnected() const noexcept;
+		[[nodiscard]] bool isConnected() const noexcept;
 
 	private:
 		uint8_t controllerNumber_m;

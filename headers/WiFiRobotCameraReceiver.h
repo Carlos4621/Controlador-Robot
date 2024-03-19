@@ -7,13 +7,13 @@
 
 namespace My {
 
-	/// @brief Clase que permite una conexión TCP y recibir imágenes para su decodificación con cv::imdecode
+	/// @brief Clase que permite una conexiï¿½n TCP y recibir imï¿½genes para su decodificaciï¿½n con cv::imdecode
 	class WiFiRobotCameraReceiver : private WiFiDeserializer {
 	public:
 
 		/// @brief Constructor base
-		/// @param decodeMode Modo de decodificación de la imagen recibida
-		/// @param serverParams Parámetros del servidor
+		/// @param decodeMode Modo de decodificaciï¿½n de la imagen recibida
+		/// @param serverParams Parï¿½metros del servidor
 		/// @param context Contexto del OS
 		WiFiRobotCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams, boost::asio::io_context& context);
 
@@ -25,12 +25,12 @@ namespace My {
 		
 		using WiFiDeserializer::waitConnection;
 
-		/// @brief Recibe la información enviada para su obtención con getCameraData()
+		/// @brief Recibe la informaciï¿½n enviada para su obtenciï¿½n con getCameraData()
 		void receiveCameraData();
 
-		/// @brief Obtiene la última imagen guardada con receiveCameraData()
-		/// @return Última imagen guardada
-		cv::Mat getCameraData() noexcept;
+		/// @brief Obtiene la ï¿½ltima imagen guardada con receiveCameraData()
+		/// @return ï¿½ltima imagen guardada
+		[[nodiscard]] cv::Mat getCameraData() noexcept;
 
 	private:
 		std::vector<unsigned char> buffer_m;

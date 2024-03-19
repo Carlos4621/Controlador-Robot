@@ -46,7 +46,7 @@ namespace My {
 		boost::asio::ip::tcp::socket socket_m;
 
 		template<Serializable T>
-		std::string serializeData(const T& toSerialize);
+		[[nodiscard]] std::string serializeData(const T& toSerialize);
 
 	};
 
