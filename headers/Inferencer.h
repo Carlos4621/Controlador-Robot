@@ -18,6 +18,13 @@ namespace My {
         cv::Rect bouncingBox;
     };
 
+    struct InferencerParams {
+        std::string modelPath;
+        cv::Size modelInputSize;
+        std::string classNamesPath;
+        bool runWithCUDA;
+    };
+    
     /// @brief Clase que permite el uso de modelos YOLOv8 exportados a .onnx
     class Inferencer {
     public:
@@ -28,6 +35,10 @@ namespace My {
         /// @param classNamesPath Ruta a los nombres de las classes dependiendo su ID
         /// @param runWithCuda Decidir si usar CUDA. Default = true
         Inferencer(std::string_view onnxModelPath, const cv::Size& modelInputShape, std::string_view classNamesPath, const bool& runWithCuda = true);
+
+        /// @brief Constructor con paquete de parámetros
+        /// @param params Paquete de parámetros del inferenciador
+        explicit Inferencer(const InferencerParams& params);
 
         Inferencer(const Inferencer&) = default;
         Inferencer(Inferencer&&) noexcept = default;

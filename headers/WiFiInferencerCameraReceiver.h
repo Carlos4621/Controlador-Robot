@@ -8,20 +8,20 @@
 namespace My {
 
 	/// @brief Clase que permite una conexi�n TCP y recibir im�genes para su decodificaci�n con cv::imdecode
-	class WiFiRobotCameraReceiver : private WiFiDeserializer {
+	class WiFiInferencerCameraReceiver : private WiFiDeserializer {
 	public:
 
 		/// @brief Constructor base
 		/// @param decodeMode Modo de decodificaci�n de la imagen recibida
 		/// @param serverParams Par�metros del servidor
 		/// @param context Contexto del OS
-		WiFiRobotCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams, boost::asio::io_context& context);
+		WiFiInferencerCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams, boost::asio::io_context& context);
 
-		WiFiRobotCameraReceiver(const WiFiRobotCameraReceiver&) = default;
-		WiFiRobotCameraReceiver(WiFiRobotCameraReceiver&&) noexcept = default;
+		WiFiInferencerCameraReceiver(const WiFiInferencerCameraReceiver&) = default;
+		WiFiInferencerCameraReceiver(WiFiInferencerCameraReceiver&&) noexcept = default;
 
-		WiFiRobotCameraReceiver& operator=(const WiFiRobotCameraReceiver&) = default;
-		WiFiRobotCameraReceiver& operator=(WiFiRobotCameraReceiver&&) noexcept = default;
+		WiFiInferencerCameraReceiver& operator=(const WiFiInferencerCameraReceiver&) = default;
+		WiFiInferencerCameraReceiver& operator=(WiFiInferencerCameraReceiver&&) noexcept = default;
 		
 		using WiFiDeserializer::waitConnection;
 

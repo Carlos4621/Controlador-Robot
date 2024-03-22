@@ -5,6 +5,7 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 #include <string_view>
+#include "Inferencer.h"
 
 namespace My {
 
@@ -14,18 +15,20 @@ namespace My {
 	*/
 
 	/// @brief Clase que representa una c�mara que ofrece funciones de reconocimiento
-	class RobotCamera {
+	class InferencerCamera {
 	public:
 
 		/// @brief Constructor base
 		/// @param cameraID ID de la c�mara a usar
-		explicit RobotCamera(const uint8_t& cameraID);
+		explicit InferencerCamera(const uint8_t& cameraID);
 
-		RobotCamera(const RobotCamera&) = default;
-		RobotCamera(RobotCamera&&) noexcept = default;
+		InferencerCamera(const InferencerCamera&) = default;
+		InferencerCamera(InferencerCamera&&) noexcept = default;
 
-		RobotCamera& operator=(const RobotCamera&) = default;
-		RobotCamera& operator=(RobotCamera&&) noexcept = default;
+		virtual ~InferencerCamera() noexcept = default;
+
+		InferencerCamera& operator=(const InferencerCamera&) = default;
+		InferencerCamera& operator=(InferencerCamera&&) noexcept = default;
 
 		/// @brief Toma un frame de la c�mara
 		void updateCamara();
@@ -35,6 +38,7 @@ namespace My {
 		[[nodiscard]] cv::Mat getLastImage() const noexcept;
 
 	private:
+	
 		cv::VideoCapture camera_m;
 		cv::Mat lastImage_m;
 

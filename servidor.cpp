@@ -3,7 +3,7 @@
 //#include <SFML/Graphics.hpp>
 //#include <SFML/Network.hpp>
 //#include "WiFiXboxReceiver.h"
-//#include "WiFiRobotCamera.h"
+//#include "WiFiInferencerCamera.h"
 //
 //using namespace std;
 //
@@ -32,7 +32,7 @@
 //	return 0;
 //}
 
-#include "WiFiRobotCamera.h"
+#include "WiFiInferencerCamera.h"
 
 //const My::ServerParams sv{ "192.168.0.172", "50000" };
 const My::ServerParams sv{ "127.0.0.1", "50000" };
@@ -44,7 +44,7 @@ boost::asio::io_context context;
 const My::EncodeParams enpar{ ".jpg", {} };
 
 int main() {
-	My::WiFiRobotCamera cc{ enpar, sv, context, 0 };
+	My::WiFiInferencerCamera cc{ enpar, sv, context, 0 };
 
 	cc.startConnection();
 

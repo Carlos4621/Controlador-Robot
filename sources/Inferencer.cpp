@@ -7,6 +7,9 @@ My::Inferencer::Inferencer(std::string_view modelPath, const cv::Size& modelInpu
     loadClasses(classesTxtPath);
 }
 
+My::Inferencer::Inferencer(const InferencerParams &params) : Inferencer{ params.modelPath, params.modelInputSize, params.classNamesPath, params.runWithCUDA } {
+}
+
 std::vector<My::InferenceData> My::Inferencer::getInferences(const cv::Mat &inputImage, const double& modelConfidenceThreshold, const double& modelScoreThreshold,
     const double& modelNMSThreshold) {
 
