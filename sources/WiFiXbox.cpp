@@ -7,5 +7,5 @@ My::WiFiXbox::WiFiXbox(const ServerParams& serverParams, boost::asio::io_context
 }
 
 void My::WiFiXbox::sendControllerData() {
-	return sendData(getControllerData());
+	sendData(getControllerData());
 }

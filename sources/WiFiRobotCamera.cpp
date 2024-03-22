@@ -7,7 +7,7 @@ My::WiFiRobotCamera::WiFiRobotCamera(const EncodeParams& encodeParams, const Ser
 
 void My::WiFiRobotCamera::sendCameraData() {
 	encodeLastImage();
-	return sendData(buffer_m);
+	sendData(buffer_m);
 }
 
 void My::WiFiRobotCamera::encodeLastImage() {
