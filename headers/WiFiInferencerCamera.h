@@ -19,10 +19,12 @@ namespace My {
 		/// @param context Contexto del OS
 		/// @param cameraID ID de la c�mara a usar
 		WiFiInferencerCamera(const EncodeParams& encodeParams, const ServerParams& serverParams, boost::asio::io_context& context, 
-			const uint8_t& cameraID);
+			const uint8_t& cameraID, std::initializer_list<InferencerParams> Inferences);
 
 		WiFiInferencerCamera(const WiFiInferencerCamera&) = default;
 		WiFiInferencerCamera(WiFiInferencerCamera&&) noexcept = default;
+
+		virtual ~WiFiInferencerCamera() noexcept = default;
 
 		WiFiInferencerCamera& operator=(const WiFiInferencerCamera&) = default;
 		WiFiInferencerCamera& operator=(WiFiInferencerCamera&&) noexcept = default;
@@ -32,7 +34,15 @@ namespace My {
 		/// @brief Env�a la imagen codificada
 		void sendCameraData();
 
+		/// @brief Envía un vector con las inferencias del inferenciador n
+		/// @param index Índice del inferenciador a enviar su data
+		void sendInferenceData(const size_t& index);
+
+		/// @brief Envía todos los vectores con las inferencias de todos los inferenciadores
+		void sendAllInferenceData();
+
 	private:
+	
 		std::vector<unsigned char> buffer_m;
 		EncodeParams params_m;
 

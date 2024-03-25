@@ -7,16 +7,9 @@
 #include <string>
 #include <string_view>
 #include <opencv2/opencv.hpp>
+#include "InferenceData.h"
 
 namespace My {
-
-    /// @brief Struct que contiene los datos de las detecciones
-    struct InferenceData {
-        uint16_t classID;
-        std::string className;
-        double confidence;
-        cv::Rect bouncingBox;
-    };
 
     struct InferencerParams {
         std::string modelPath;
@@ -50,9 +43,9 @@ namespace My {
 
         /// @brief Aplica el modelo a la imagen proporcionada y devuelve las inferencias
         /// @param inputImage Imagen a usar
-        /// @param modelConfidenceThreshold Threshold de la confidencia
-        /// @param modelScoreThreshold Threshold del score
-        /// @param modelNMSThreshold Threshold del NMS
+        /// @param modelConfidenceThreshold Threshold de la confidencia. Default = 0.25
+        /// @param modelScoreThreshold Threshold del score. Default = 0.45
+        /// @param modelNMSThreshold Threshold del NMS. Default = 0.5
         /// @return Vector con los datos de las inferencias
         [[nodiscard]] std::vector<InferenceData> getInferences(const cv::Mat& inputImage, const double& modelConfidenceThreshold = 0.25f,
             const double& modelScoreThreshold = 0.45f, const double& modelNMSThreshold = 0.5f);

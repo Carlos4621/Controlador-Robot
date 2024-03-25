@@ -42,16 +42,20 @@ const My::ServerParams sv{ "127.0.0.1", "50000" };
 boost::asio::io_context context;
 
 const My::EncodeParams enpar{ ".jpg", {} };
+const My::InferencerParams inp{"/home/carlos4621/Controlador-Robot/resources/hazmatModel.onnx", cv::Size(640, 640), 
+	"/home/carlos4621/Controlador-Robot/resources/hazmatClasses.txt" , false };
 
 int main() {
-	My::WiFiInferencerCamera cc{ enpar, sv, context, 0 };
+	My::WiFiInferencerCamera cc{ enpar, sv, context, 0, {inp} };
 
 	cc.startConnection();
 
 	while (true) {
 		cc.updateCamara();
-
+		cc.applyAllInferencers();
+		
 		cc.sendCameraData();
+		cc.sendAllInferenceData();
 
 		cv::waitKey(1);
 	}
