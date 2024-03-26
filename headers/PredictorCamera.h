@@ -11,21 +11,21 @@
 namespace My {
 
 	/// @brief Clase que representa una cámara que ofrece funciones de reconocimiento
-	class InferencerCamera {
+	class PredictorCamera {
 	public:
 
 		/// @brief Constructor base
 		/// @param cameraID ID de la cámara a usar
 		/// @param modelsParams Lista de parámetros para los modelos a usar
-		InferencerCamera(const uint8_t& cameraID, std::initializer_list<YOLOv8ModelParams> modelsParams);
+		PredictorCamera(const uint8_t& cameraID, std::initializer_list<YOLOv8ModelParams> modelsParams);
 
-		InferencerCamera(const InferencerCamera&) = default;
-		InferencerCamera(InferencerCamera&&) noexcept = default;
+		PredictorCamera(const PredictorCamera&) = default;
+		PredictorCamera(PredictorCamera&&) noexcept = default;
 
-		virtual ~InferencerCamera() noexcept = default;
+		virtual ~PredictorCamera() noexcept = default;
 
-		InferencerCamera& operator=(const InferencerCamera&) = default;
-		InferencerCamera& operator=(InferencerCamera&&) noexcept = default;
+		PredictorCamera& operator=(const PredictorCamera&) = default;
+		PredictorCamera& operator=(PredictorCamera&&) noexcept = default;
 
 		/// @brief Toma un frame de la cámara
 		void updateCamara();

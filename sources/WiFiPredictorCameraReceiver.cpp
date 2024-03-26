@@ -1,17 +1,17 @@
 #include "WiFiPredictorCameraReceiver.h"
 
-My::WiFiInferencerCameraReceiver::WiFiInferencerCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams,
+My::WiFiPredictorCameraReceiver::WiFiPredictorCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams,
 	boost::asio::io_context& context) :
 	WiFiDeserializer{ context, serverParams }, decodeMode_m{ decodeMode } {
 }
 
-void My::WiFiInferencerCameraReceiver::receiveCameraData() {
+void My::WiFiPredictorCameraReceiver::receiveCameraData() {
 	receiveData(buffer_m);
 
 	originalImage_m = cv::imdecode(buffer_m, decodeMode_m);
 }
 
-void My::WiFiInferencerCameraReceiver::receivePredictiedData(const size_t& index) {
+void My::WiFiPredictorCameraReceiver::receivePredictiedData(const size_t& index) {
 
 	// Se debe mejorar
 	if (predictedData_m.size() < index) {
@@ -21,11 +21,11 @@ void My::WiFiInferencerCameraReceiver::receivePredictiedData(const size_t& index
 	receiveData(predictedData_m[index]);
 }
 
-void My::WiFiInferencerCameraReceiver::receiveAllPredictedData() {
+void My::WiFiPredictorCameraReceiver::receiveAllPredictedData() {
 	receiveData(predictedData_m);
 }
 
-void My::WiFiInferencerCameraReceiver::setBoxesToImage() {
+void My::WiFiPredictorCameraReceiver::setBoxesToImage() {
 
 	// Tal vez pueda mejorar esto
 	originalImage_m.copyTo(boxedImage_m);
@@ -36,18 +36,18 @@ void My::WiFiInferencerCameraReceiver::setBoxesToImage() {
 	}
 }
 
-cv::Mat My::WiFiInferencerCameraReceiver::getCameraData() noexcept {
+cv::Mat My::WiFiPredictorCameraReceiver::getCameraData() noexcept {
 	return originalImage_m;
 }
 
-std::vector<My::PredictionsData> My::WiFiInferencerCameraReceiver::getPredictedData(const size_t &index) {
+std::vector<My::PredictionsData> My::WiFiPredictorCameraReceiver::getPredictedData(const size_t &index) {
     return predictedData_m[index];
 }
 
-std::vector<std::vector<My::PredictionsData> > My::WiFiInferencerCameraReceiver::getAllPredictedData() {
+std::vector<std::vector<My::PredictionsData> > My::WiFiPredictorCameraReceiver::getAllPredictedData() {
     return predictedData_m;
 }
 
-cv::Mat My::WiFiInferencerCameraReceiver::getBoxedImage() noexcept {
+cv::Mat My::WiFiPredictorCameraReceiver::getBoxedImage() noexcept {
     return boxedImage_m;
 }

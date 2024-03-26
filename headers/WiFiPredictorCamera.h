@@ -10,7 +10,7 @@ namespace My {
 
 	/// @brief Clase que permite una conexión TCP y envía imágenes de una cámara con sus respectivas predicciones usando cv::imencode para evitar la
 	///        sobrecarga de red
-	class WiFiInferencerCamera : public InferencerCamera, private WiFiSerializer {
+	class WiFiPredictorCamera : public PredictorCamera, private WiFiSerializer {
 	public:
 
 		/// @brief Constructor base
@@ -19,16 +19,16 @@ namespace My {
 		/// @param context Contexto del OS
 		/// @param cameraID ID de la cámara a usar
 		/// @param modelParams Lista con los paquetes de parámetros a usar por los modelos
-		WiFiInferencerCamera(const EncodeParams& encodeParams, const ServerParams& serverParams, boost::asio::io_context& context, 
+		WiFiPredictorCamera(const EncodeParams& encodeParams, const ServerParams& serverParams, boost::asio::io_context& context, 
 			const uint8_t& cameraID, std::initializer_list<YOLOv8ModelParams> modelsParams);
 
-		WiFiInferencerCamera(const WiFiInferencerCamera&) = default;
-		WiFiInferencerCamera(WiFiInferencerCamera&&) noexcept = default;
+		WiFiPredictorCamera(const WiFiPredictorCamera&) = default;
+		WiFiPredictorCamera(WiFiPredictorCamera&&) noexcept = default;
 
-		virtual ~WiFiInferencerCamera() noexcept = default;
+		virtual ~WiFiPredictorCamera() noexcept = default;
 
-		WiFiInferencerCamera& operator=(const WiFiInferencerCamera&) = default;
-		WiFiInferencerCamera& operator=(WiFiInferencerCamera&&) noexcept = default;
+		WiFiPredictorCamera& operator=(const WiFiPredictorCamera&) = default;
+		WiFiPredictorCamera& operator=(WiFiPredictorCamera&&) noexcept = default;
 
 		using WiFiSerializer::startConnection;
 

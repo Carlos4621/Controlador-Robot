@@ -9,22 +9,22 @@
 namespace My {
 
 	/// @brief Clase que permite una conexión TCP y recibir imágenes para su decodificación con cv::imdecode, al igual que los datos de las predicciones hechas
-	class WiFiInferencerCameraReceiver : private WiFiDeserializer {
+	class WiFiPredictorCameraReceiver : private WiFiDeserializer {
 	public:
 
 		/// @brief Constructor base
 		/// @param decodeMode Modo de decodificación de la imagen recibida
 		/// @param serverParams Parámetros del servidor
 		/// @param context Contexto del OS
-		WiFiInferencerCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams, boost::asio::io_context& context);
+		WiFiPredictorCameraReceiver(const cv::ImreadModes& decodeMode, const ServerParams& serverParams, boost::asio::io_context& context);
 
-		WiFiInferencerCameraReceiver(const WiFiInferencerCameraReceiver&) = default;
-		WiFiInferencerCameraReceiver(WiFiInferencerCameraReceiver&&) noexcept = default;
+		WiFiPredictorCameraReceiver(const WiFiPredictorCameraReceiver&) = default;
+		WiFiPredictorCameraReceiver(WiFiPredictorCameraReceiver&&) noexcept = default;
 
-		virtual ~WiFiInferencerCameraReceiver() noexcept = default;
+		virtual ~WiFiPredictorCameraReceiver() noexcept = default;
 
-		WiFiInferencerCameraReceiver& operator=(const WiFiInferencerCameraReceiver&) = default;
-		WiFiInferencerCameraReceiver& operator=(WiFiInferencerCameraReceiver&&) noexcept = default;
+		WiFiPredictorCameraReceiver& operator=(const WiFiPredictorCameraReceiver&) = default;
+		WiFiPredictorCameraReceiver& operator=(WiFiPredictorCameraReceiver&&) noexcept = default;
 		
 		using WiFiDeserializer::waitConnection;
 

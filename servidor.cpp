@@ -3,7 +3,7 @@
 //#include <SFML/Graphics.hpp>
 //#include <SFML/Network.hpp>
 //#include "WiFiXboxReceiver.h"
-//#include "WiFiInferencerCamera.h"
+//#include "WiFiPredictorCamera.h"
 //
 //using namespace std;
 //
@@ -46,7 +46,7 @@ const My::YOLOv8ModelParams inp{"/home/carlos4621/Controlador-Robot/resources/ha
 	"/home/carlos4621/Controlador-Robot/resources/hazmatClasses.txt" , false };
 
 int main() {
-	My::WiFiInferencerCamera cc{ enpar, sv, context, 0, {inp} };
+	My::WiFiPredictorCamera cc{ enpar, sv, context, 0, {inp} };
 
 	cc.startConnection();
 

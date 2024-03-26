@@ -32,7 +32,7 @@ My::ServerParams svParams{ "sexo", "50000" };
 My::WindowParams winParams{ sf::VideoMode(1920, 1080), "Test" };
 
 int main() {
-	My::WiFiInferencerCameraReceiver rec{ cv::ImreadModes::IMREAD_UNCHANGED, svParams, context };
+	My::WiFiPredictorCameraReceiver rec{ cv::ImreadModes::IMREAD_UNCHANGED, svParams, context };
 
 	rec.waitConnection();
 
