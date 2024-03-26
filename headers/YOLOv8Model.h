@@ -7,11 +7,11 @@
 #include <string>
 #include <string_view>
 #include <opencv2/opencv.hpp>
-#include "InferenceData.h"
+#include "PredictionsData.h"
 
 namespace My {
 
-    struct InferencerParams {
+    struct YOLOv8ModelParams {
         std::string modelPath;
         cv::Size modelInputSize;
         std::string classNamesPath;
@@ -19,7 +19,7 @@ namespace My {
     };
     
     /// @brief Clase que permite el uso de modelos YOLOv8 exportados a .onnx
-    class Inferencer {
+    class YOLOv8Model {
     public:
 
         /// @brief Constructor base
@@ -27,27 +27,27 @@ namespace My {
         /// @param modelInputShape Tamaño de las imágenes de entrada del modelo
         /// @param classNamesPath Ruta a los nombres de las classes dependiendo su ID
         /// @param runWithCuda Decidir si usar CUDA. Default = true
-        Inferencer(std::string_view onnxModelPath, const cv::Size& modelInputShape, std::string_view classNamesPath, const bool& runWithCuda = true);
+        YOLOv8Model(std::string_view onnxModelPath, const cv::Size& modelInputShape, std::string_view classNamesPath, const bool& runWithCuda = true);
 
         /// @brief Constructor con paquete de parámetros
         /// @param params Paquete de parámetros del inferenciador
-        explicit Inferencer(const InferencerParams& params);
+        explicit YOLOv8Model(const YOLOv8ModelParams& params);
 
-        Inferencer(const Inferencer&) = default;
-        Inferencer(Inferencer&&) noexcept = default;
+        YOLOv8Model(const YOLOv8Model&) = default;
+        YOLOv8Model(YOLOv8Model&&) noexcept = default;
 
-        virtual ~Inferencer() noexcept = default;
+        virtual ~YOLOv8Model() noexcept = default;
 
-        Inferencer& operator=(const Inferencer&) = default;
-        Inferencer& operator=(Inferencer&&) noexcept = default;
+        YOLOv8Model& operator=(const YOLOv8Model&) = default;
+        YOLOv8Model& operator=(YOLOv8Model&&) noexcept = default;
 
-        /// @brief Aplica el modelo a la imagen proporcionada y devuelve las inferencias
+        /// @brief Aplica el modelo a la imagen proporcionada y devuelve las predicciones
         /// @param inputImage Imagen a usar
         /// @param modelConfidenceThreshold Threshold de la confidencia. Default = 0.25
         /// @param modelScoreThreshold Threshold del score. Default = 0.45
         /// @param modelNMSThreshold Threshold del NMS. Default = 0.5
-        /// @return Vector con los datos de las inferencias
-        [[nodiscard]] std::vector<InferenceData> getInferences(const cv::Mat& inputImage, const double& modelConfidenceThreshold = 0.25f,
+        /// @return Vector con los datos de las predicciones
+        [[nodiscard]] std::vector<PredictionsData> getPredictions(const cv::Mat& inputImage, const double& modelConfidenceThreshold = 0.25f,
             const double& modelScoreThreshold = 0.45f, const double& modelNMSThreshold = 0.5f);
 
     private:

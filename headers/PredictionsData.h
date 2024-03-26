@@ -9,8 +9,9 @@
 
 namespace My {
 
-    /// @brief Struct que contiene los datos de las detecciones
-    struct InferenceData {
+    /// @brief Struct que contiene los datos de las predicciones
+    struct PredictionsData {
+
         uint16_t classID;
         std::string className;
         double confidence;

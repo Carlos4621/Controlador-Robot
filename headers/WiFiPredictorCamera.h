@@ -3,23 +3,24 @@
 #define WIFI_ROBOT_CAMERA_HEADER
 
 #include "WiFiSerializer.h"
-#include "InferencerCamera.h"
+#include "PredictorCamera.h"
 #include "EncodeParams.h"
 
 namespace My {
 
-	/// @brief Clase que permite una conexi�n TCP y env�a im�genes de una c�mara usando cv::imencode para evitar la
+	/// @brief Clase que permite una conexión TCP y envía imágenes de una cámara con sus respectivas predicciones usando cv::imencode para evitar la
 	///        sobrecarga de red
 	class WiFiInferencerCamera : public InferencerCamera, private WiFiSerializer {
 	public:
 
 		/// @brief Constructor base
-		/// @param encodeParams Par�metros para la encodificaci�n de la imagen
-		/// @param serverParams Par�metros del servidor
+		/// @param encodeParams Parámetros para la encodificación de la imagen
+		/// @param serverParams Parámetros del servidor
 		/// @param context Contexto del OS
-		/// @param cameraID ID de la c�mara a usar
+		/// @param cameraID ID de la cámara a usar
+		/// @param modelParams Lista con los paquetes de parámetros a usar por los modelos
 		WiFiInferencerCamera(const EncodeParams& encodeParams, const ServerParams& serverParams, boost::asio::io_context& context, 
-			const uint8_t& cameraID, std::initializer_list<InferencerParams> Inferences);
+			const uint8_t& cameraID, std::initializer_list<YOLOv8ModelParams> modelsParams);
 
 		WiFiInferencerCamera(const WiFiInferencerCamera&) = default;
 		WiFiInferencerCamera(WiFiInferencerCamera&&) noexcept = default;
@@ -31,15 +32,15 @@ namespace My {
 
 		using WiFiSerializer::startConnection;
 
-		/// @brief Env�a la imagen codificada
+		/// @brief Envía la imagen codificada
 		void sendCameraData();
 
-		/// @brief Envía un vector con las inferencias del inferenciador n
-		/// @param index Índice del inferenciador a enviar su data
-		void sendInferenceData(const size_t& index);
+		/// @brief Envía un vector con las predicciones del modelo n
+		/// @param index Índice del modelo a enviar su data
+		void sendPredictedData(const size_t& index);
 
-		/// @brief Envía todos los vectores con las inferencias de todos los inferenciadores
-		void sendAllInferenceData();
+		/// @brief Envía todos los vectores con las predicciones de todos los modelos
+		void sendAllPredictedData();
 
 	private:
 	

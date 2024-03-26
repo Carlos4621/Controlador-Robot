@@ -1,16 +1,16 @@
-#include "Inferencer.h"
+#include "YOLOv8Model.h"
 
-My::Inferencer::Inferencer(std::string_view modelPath, const cv::Size& modelInputSize, std::string_view classesTxtPath, const bool& cudaEnabled) : 
+My::YOLOv8Model::YOLOv8Model(std::string_view modelPath, const cv::Size& modelInputSize, std::string_view classesTxtPath, const bool& cudaEnabled) : 
     modelInputSize_m{ modelInputSize } {
 
     loadOnnxNetwork(modelPath, cudaEnabled);
     loadClasses(classesTxtPath);
 }
 
-My::Inferencer::Inferencer(const InferencerParams &params) : Inferencer{ params.modelPath, params.modelInputSize, params.classNamesPath, params.runWithCUDA } {
+My::YOLOv8Model::YOLOv8Model(const YOLOv8ModelParams &params) : YOLOv8Model{ params.modelPath, params.modelInputSize, params.classNamesPath, params.runWithCUDA } {
 }
 
-std::vector<My::InferenceData> My::Inferencer::getInferences(const cv::Mat &inputImage, const double& modelConfidenceThreshold, const double& modelScoreThreshold,
+std::vector<My::PredictionsData> My::YOLOv8Model::getPredictions(const cv::Mat &inputImage, const double& modelConfidenceThreshold, const double& modelScoreThreshold,
     const double& modelNMSThreshold) {
 
     cv::Mat blob;
@@ -70,7 +70,7 @@ std::vector<My::InferenceData> My::Inferencer::getInferences(const cv::Mat &inpu
     std::vector<int> NMSResult;
     cv::dnn::NMSBoxes(boxes, confidences, modelScoreThreshold, modelNMSThreshold, NMSResult);
 
-    std::vector<InferenceData> inferences;
+    std::vector<PredictionsData> inferences;
 
     for (const auto &i : NMSResult) {
         inferences.emplace_back(classIDs[i], classNames_m[classIDs[i]], confidences[i], boxes[i]);
@@ -79,7 +79,7 @@ std::vector<My::InferenceData> My::Inferencer::getInferences(const cv::Mat &inpu
     return inferences;
 }
 
-void My::Inferencer::loadClasses(std::string_view path) {
+void My::YOLOv8Model::loadClasses(std::string_view path) {
 
     if (std::ifstream inputFile(path.data()); inputFile.is_open()) {
 
@@ -95,7 +95,7 @@ void My::Inferencer::loadClasses(std::string_view path) {
     }
 }
 
-void My::Inferencer::loadOnnxNetwork(std::string_view path, const bool& cudaEnabled) {
+void My::YOLOv8Model::loadOnnxNetwork(std::string_view path, const bool& cudaEnabled) {
     network_m = cv::dnn::readNetFromONNX(path.data());
 
     // Usar (?:) ?

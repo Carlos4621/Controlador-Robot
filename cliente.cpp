@@ -23,7 +23,7 @@
 // 	return 0;
 // }
 
-#include "WiFiInferencerCameraReceiver.h"
+#include "WiFiPredictorCameraReceiver.h"
 #include "ClientWindow.h"
 
 boost::asio::io_context context;
@@ -42,7 +42,7 @@ int main() {
 		try {
 
 			rec.receiveCameraData();
-			rec.receiveAllInferencesData();
+			rec.receiveAllPredictedData();
 			rec.setBoxesToImage();
 
 		}

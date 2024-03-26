@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Inferencer.h"
+#include "YOLOv8Model.h"
 
 using namespace std;
 using namespace cv;
@@ -9,7 +9,7 @@ int main() {
     const std::string modelPath{ "/home/carlos4621/Escritorio/Controlador-Robot/resources/hazmatModel.onnx" };
     const std::string classesPath{ "/home/carlos4621/Escritorio/Controlador-Robot/resources/hazmatClasses.txt" };
 
-    My::Inferencer inf{ modelPath, cv::Size(640, 640), classesPath, false };
+    My::YOLOv8Model inf{ modelPath, cv::Size(640, 640), classesPath, false };
 
     std::vector<std::string> imageNames;
     imageNames.emplace_back("/home/carlos4621/Escritorio/Controlador-Robot/resources/hazmatTest1.jpg");
@@ -21,7 +21,7 @@ int main() {
 
         auto frame{ cv::imread(i) };
 
-        auto inferences{ inf.getInferences(frame) };
+        auto inferences{ inf.getPredictions(frame) };
 
         std::cout << "Detecciones:" << inferences.size() << std::endl;
 

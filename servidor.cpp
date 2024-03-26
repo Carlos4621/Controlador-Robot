@@ -32,7 +32,7 @@
 //	return 0;
 //}
 
-#include "WiFiInferencerCamera.h"
+#include "WiFiPredictorCamera.h"
 
 //const My::ServerParams sv{ "192.168.0.172", "50000" };
 const My::ServerParams sv{ "127.0.0.1", "50000" };
@@ -42,7 +42,7 @@ const My::ServerParams sv{ "127.0.0.1", "50000" };
 boost::asio::io_context context;
 
 const My::EncodeParams enpar{ ".jpg", {} };
-const My::InferencerParams inp{"/home/carlos4621/Controlador-Robot/resources/hazmatModel.onnx", cv::Size(640, 640), 
+const My::YOLOv8ModelParams inp{"/home/carlos4621/Controlador-Robot/resources/hazmatModel.onnx", cv::Size(640, 640), 
 	"/home/carlos4621/Controlador-Robot/resources/hazmatClasses.txt" , false };
 
 int main() {
@@ -52,10 +52,10 @@ int main() {
 
 	while (true) {
 		cc.updateCamara();
-		cc.applyAllInferencers();
+		cc.applyAllModels();
 		
 		cc.sendCameraData();
-		cc.sendAllInferenceData();
+		cc.sendAllPredictedData();
 
 		cv::waitKey(1);
 	}
