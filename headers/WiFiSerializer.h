@@ -17,13 +17,13 @@ namespace My {
     	} -> std::same_as<boost::archive::text_oarchive&>;
 	};
 
-	/// @brief Clase que permite una conexi�n TCP y el env�o de datos serializados
+	/// @brief Clase que permite una conexión TCP y el envío de datos serializados
 	class WiFiSerializer {
 	public:
 
 		/// @brief Constructor base
 		/// @param context Contexto del OS
-		/// @param serverParams Par�metros del servidor a conectar
+		/// @param serverParams Parámetros del servidor a conectar
 		WiFiSerializer(boost::asio::io_context& context, const ServerParams& serverParams);
 
 		WiFiSerializer(const WiFiSerializer&) = default;
@@ -32,10 +32,10 @@ namespace My {
 		WiFiSerializer& operator=(const WiFiSerializer&) = default;
 		WiFiSerializer& operator=(WiFiSerializer&&) noexcept = default;
 
-		/// @brief Inicia la conexi�n con otro socket
+		/// @brief Inicia la conexión con otro socket
 		void startConnection();
 
-		/// @brief Env�a data a otro socket
+		/// @brief Envía data a otro socket
 		/// @tparam T Tipo de dato a enviar, debe satisfacer Serializable
 		/// @param toSend Data a enviar
 		template<Serializable T>

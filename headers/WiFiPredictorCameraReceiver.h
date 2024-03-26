@@ -38,6 +38,9 @@ namespace My {
 
 		/// @brief Recibe todas las predicciones hechas, se debe usar en conjunto con sendAllPredictedData()
 		void receiveAllPredictedData();
+		
+		/// @brief Recibe el tamaño del vector que contiene los modelos y hace resize al vector que los contiene
+		void receiveModelSize();
 
 		/// @brief Modifica la imagen para la inclusión de las bouncing boxes recibidas de las predicciones en la imagen,
 		///		   para obtener la imagen usa getBoxedImage();

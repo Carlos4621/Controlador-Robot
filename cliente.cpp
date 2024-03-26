@@ -35,6 +35,7 @@ int main() {
 	My::WiFiPredictorCameraReceiver rec{ cv::ImreadModes::IMREAD_UNCHANGED, svParams, context };
 
 	rec.waitConnection();
+	rec.receiveModelSize();
 
 	cv::namedWindow("xxx");
 	while (true) {

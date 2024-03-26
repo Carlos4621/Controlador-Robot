@@ -12,17 +12,17 @@ void My::WiFiPredictorCameraReceiver::receiveCameraData() {
 }
 
 void My::WiFiPredictorCameraReceiver::receivePredictiedData(const size_t& index) {
-
-	// Se debe mejorar
-	if (predictedData_m.size() < index) {
-		predictedData_m.resize(index + 1);
-	}
-
 	receiveData(predictedData_m[index]);
 }
 
 void My::WiFiPredictorCameraReceiver::receiveAllPredictedData() {
 	receiveData(predictedData_m);
+}
+
+void My::WiFiPredictorCameraReceiver::receiveModelSize() {
+	size_t newSize;
+	receiveData(newSize);
+	predictedData_m.resize(newSize);
 }
 
 void My::WiFiPredictorCameraReceiver::setBoxesToImage() {

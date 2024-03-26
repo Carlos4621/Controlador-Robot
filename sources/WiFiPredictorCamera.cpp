@@ -18,6 +18,10 @@ void My::WiFiPredictorCamera::sendAllPredictedData() {
 	sendData(getAllPredictions());
 }
 
+void My::WiFiPredictorCamera::sendModelsSize() {
+	sendData(getModelsSize());
+}
+
 void My::WiFiPredictorCamera::encodeLastImage() {
 	buffer_m.clear();
 

@@ -42,6 +42,9 @@ namespace My {
 		/// @brief Envía todos los vectores con las predicciones de todos los modelos
 		void sendAllPredictedData();
 
+		/// @brief Envía el tamaño del vector que contiene los modelos
+		void sendModelsSize();
+
 	private:
 	
 		std::vector<unsigned char> buffer_m;

@@ -13,7 +13,7 @@ namespace My {
 	/*
 		TODO:
 		- Manejar desconexiones y reconexiones
-		- Manejar asincron�a
+		- Manejar asincronía
 	*/
 
 	template<typename T>
@@ -38,12 +38,12 @@ namespace My {
 		WiFiDeserializer& operator=(const WiFiDeserializer&) = default;
 		WiFiDeserializer& operator=(WiFiDeserializer&&) noexcept = default;
 
-		/// @brief Espera a una petici�n de conexi�n
+		/// @brief Espera a una petición de conexi�n
 		void waitConnection();
 
 		/// @brief Recibe data serializada
 		/// @tparam T Tipo de dato a recibir, debe satisfacer Desearialiable
-		/// @param toReceive Donde se guardar� la informaci�n desearilizada
+		/// @param toReceive Donde se guardará la información desearilizada
 		template<Deserializable T>
 		void receiveData(T& toReceive);
 

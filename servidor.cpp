@@ -49,6 +49,7 @@ int main() {
 	My::WiFiPredictorCamera cc{ enpar, sv, context, 0, {inp} };
 
 	cc.startConnection();
+	cc.sendModelsSize();
 
 	while (true) {
 		cc.updateCamara();
