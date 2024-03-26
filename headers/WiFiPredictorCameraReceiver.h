@@ -44,7 +44,9 @@ namespace My {
 
 		/// @brief Modifica la imagen para la inclusión de las bouncing boxes recibidas de las predicciones en la imagen,
 		///		   para obtener la imagen usa getBoxedImage();
-		void setBoxesToImage();
+		/// @param color Color que el rectágunlo tomará. Por defecto Morado
+		/// @param Thickness Grosor de las líneas del rectángulo. Default = 2
+		void setBoxesToImage(const cv::Scalar& color = cv::Scalar{255, 0, 255}, const size_t& thickness = 2);
 
 		/// @brief Obtiene la última imagen guardada con receiveCameraData()
 		/// @return última imagen guardada

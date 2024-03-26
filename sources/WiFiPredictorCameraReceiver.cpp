@@ -25,13 +25,13 @@ void My::WiFiPredictorCameraReceiver::receiveModelSize() {
 	predictedData_m.resize(newSize);
 }
 
-void My::WiFiPredictorCameraReceiver::setBoxesToImage() {
+void My::WiFiPredictorCameraReceiver::setBoxesToImage(const cv::Scalar& color, const size_t& thickness) {
 
 	// Tal vez pueda mejorar esto
 	originalImage_m.copyTo(boxedImage_m);
 	for (const auto &i : predictedData_m) {
 		for (const auto &j : i) {
-			cv::rectangle(boxedImage_m, j.bouncingBox, cv::Scalar(255, 0, 255), 2);
+			cv::rectangle(boxedImage_m, j.bouncingBox, color, thickness);
 		}	
 	}
 }
