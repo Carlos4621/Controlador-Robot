@@ -9,8 +9,8 @@ namespace My {
 
     /*
         TODO:
-        - Implementar giros a 90 grados
         - Hacer un movimiento curvo aparte del giro a 90 grados
+        - Implementar una zona muerta
     */
 
     /// @brief Clase que permite que cualquier control de Xbox controle dos modulos HW-039
@@ -34,7 +34,9 @@ namespace My {
         void applyChanges();
 
     private:
-        std::pair<HW039Controller, HW039Controller> motors_m;
+
+        HW039Controller rightMotor_m;
+        HW039Controller leftMotor_m;
 
     };
 
