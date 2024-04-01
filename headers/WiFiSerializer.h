@@ -29,6 +29,8 @@ namespace My {
 		WiFiSerializer(const WiFiSerializer&) = default;
 		WiFiSerializer(WiFiSerializer&&) noexcept = default;
 
+		virtual ~WiFiSerializer() noexcept = default;
+
 		WiFiSerializer& operator=(const WiFiSerializer&) = default;
 		WiFiSerializer& operator=(WiFiSerializer&&) noexcept = default;
 

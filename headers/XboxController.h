@@ -18,6 +18,8 @@ namespace My {
 		XboxController(const XboxController&) = default;
 		XboxController(XboxController&&) = default;
 
+		virtual ~XboxController() noexcept = default;
+
 		XboxController& operator=(const XboxController&) = default;
 		XboxController& operator=(XboxController&&) noexcept = default;
 

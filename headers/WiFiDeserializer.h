@@ -35,6 +35,8 @@ namespace My {
 		WiFiDeserializer(const WiFiDeserializer&) = default;
 		WiFiDeserializer(WiFiDeserializer&&) noexcept = default;
 
+		virtual ~WiFiDeserializer() noexcept = default;
+
 		WiFiDeserializer& operator=(const WiFiDeserializer&) = default;
 		WiFiDeserializer& operator=(WiFiDeserializer&&) noexcept = default;
 
