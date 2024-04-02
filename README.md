@@ -8,6 +8,6 @@ git clone https://github.com/Carlos4621/Controlador-Robot.git
 cd Controlador-Robot
 mkdir build
 cd build
-cmake -G Ninja -D CMAKE_CXX_COMPILER=clang++-18
+cmake -G Ninja -D CMAKE_CXX_COMPILER=clang++-18 ..
 ninja -j
 ```
