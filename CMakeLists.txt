@@ -1,33 +1,33 @@
-cmake_minimum_required(VERSION 3.12)
-
-set(proyect "Controlador")
-
-project(${proyect})
+cmake_minimum_required(VERSION 3.28)
+project(Controlador)
 
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(headers)
 
 file(GLOB SOURCES "sources/*.cpp")
-link_directories("usr/local/lib")
 
 find_package(OpenCV REQUIRED)
 find_package(Boost REQUIRED COMPONENTS serialization)
 
+find_package(SFML COMPONENTS graphics window system audio network REQUIRED)
+
+find_library(LGPIO lgpio REQUIRED)
+
+function(link_target target)
+    target_link_libraries(${target} 
+        ${OpenCV_LIBS} 
+        Boost::boost Boost::serialization
+        sfml-graphics sfml-window sfml-system sfml-audio sfml-network
+        ${LGPIO}
+    )
+endfunction()
+
 add_executable(cliente ${SOURCES} cliente.cpp)
-target_link_libraries(cliente ${OpenCV_LIBS})
-target_link_libraries(cliente Boost::boost Boost::serialization)
-target_link_libraries(cliente sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
-target_link_libraries(cliente lgpio)
+link_target(cliente)
 
 add_executable(servidor ${SOURCES} servidor.cpp)
-target_link_libraries(servidor ${OpenCV_LIBS})
-target_link_libraries(servidor Boost::boost Boost::serialization)
-target_link_libraries(servidor sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
-target_link_libraries(servidor lgpio)
+link_target(servidor)
 
 add_executable(hazmat ${SOURCES} tests/inferenceTest.cpp)
-target_link_libraries(hazmat ${OpenCV_LIBS})
-target_link_libraries(hazmat Boost::boost Boost::serialization)
-target_link_libraries(hazmat sfml-graphics sfml-window sfml-system sfml-audio sfml-network)
-target_link_libraries(hazmat lgpio)
+link_target(hazmat)
