@@ -7,5 +7,5 @@ cd Controlador-Robot
 mkdir build
 cd build
 cmake ..
-make -j
+make -j10
 ```
