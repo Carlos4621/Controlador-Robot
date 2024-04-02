@@ -4,6 +4,7 @@
 
 #include "XboxControllerData.h"
 #include <SFML/Graphics.hpp>
+#include <cstdint>
 
 namespace My {
 

@@ -3,24 +3,25 @@
 #define JOYSTICK_CIRCLE_HEADER
 
 #include <SFML/Graphics.hpp>
+#include <cstdint>
 
 namespace My {
 
-	/// @brief Clase que representa un círculo y un punto que representa la posición actual del joystick
+	/// @brief Clase que representa un cï¿½rculo y un punto que representa la posiciï¿½n actual del joystick
 	class JoystickCircle {
 	public:
 
 		/// @brief Constructor base
-		/// @param position Posición del círculo
+		/// @param position Posiciï¿½n del cï¿½rculo
 		explicit JoystickCircle(const sf::Vector2f& position);
 
 		/// @brief Dibuja la figura en una ventana
 		/// @param window Ventana en la que se va a dibujar la figura
 		void drawInWindow(sf::RenderWindow& window) const;
 
-		/// @brief Dibuja un punto dentro del círculo. El origen de las coordenadas será el centro del círculo, 
-		/// si el punto sale del rango del círculo se lanzará una excepción
-		/// @param position Posición relativa en donde se dibujará el punto
+		/// @brief Dibuja un punto dentro del cï¿½rculo. El origen de las coordenadas serï¿½ el centro del cï¿½rculo, 
+		/// si el punto sale del rango del cï¿½rculo se lanzarï¿½ una excepciï¿½n
+		/// @param position Posiciï¿½n relativa en donde se dibujarï¿½ el punto
 		void drawPoint(const sf::Vector2f& position);
 
 	private:
