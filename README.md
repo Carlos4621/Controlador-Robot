@@ -9,5 +9,5 @@ cd Controlador-Robot
 mkdir build
 cd build
 cmake -G Ninja -D CMAKE_CXX_COMPILER=clang++-18 ..
-ninja -j
+ninja -j10
 ```
