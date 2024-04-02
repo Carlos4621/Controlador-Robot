@@ -2,7 +2,7 @@
 #ifndef INFERENCES_DATA_HEADER
 #define INFERENCES_DATA_HEADER
 
-#include <inttypes.h>
+#include <cstdint>
 #include <string>
 #include <opencv4/opencv2/opencv.hpp>
 #include <boost/serialization/string.hpp>

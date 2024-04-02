@@ -1,6 +1,5 @@
 #include "HW039Controller.h"
 #include <stdexcept>
-#include <compare>
 
 My::HW039Controller::HW039Controller(const int &chipNumnber, const uint8_t &RPWMPin,
  const uint8_t &LWPMPin, const float &frecuency) : 
@@ -42,8 +41,6 @@ void My::HW039Controller::setRelative(const float &relativeSpeed) {
     else {
         stopMotor();
     }
-    
-    
 }
 
 void My::HW039Controller::claimOutputs()

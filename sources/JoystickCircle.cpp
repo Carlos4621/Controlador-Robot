@@ -18,7 +18,7 @@ void My::JoystickCircle::drawPoint(const sf::Vector2f& position) {
 	const sf::Vector2f objetive{ circleCenter.x + position.x,  circleCenter.y + position.y };
 
 	if (!circle_m.getGlobalBounds().contains(objetive)) {
-		throw std::invalid_argument{ "Las coordenadas salen del círculo" };
+		throw std::invalid_argument{ "Las coordenadas salen del cÃ­rculo" };
 	}
 
 	point_m.setPosition(objetive);

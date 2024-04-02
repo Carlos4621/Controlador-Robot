@@ -4,7 +4,6 @@
 
 #include <opencv2/opencv.hpp>
 #include <vector>
-#include <string_view>
 #include "YOLOv8Model.h"
 #include "PredictionsData.h"
 

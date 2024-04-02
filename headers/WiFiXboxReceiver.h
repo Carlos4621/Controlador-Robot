@@ -4,7 +4,6 @@
 
 #include "XboxControllerData.h"
 #include "WiFiXbox.h"
-#include <array>
 #include "WiFiDeserializer.h"
 
 namespace My {
