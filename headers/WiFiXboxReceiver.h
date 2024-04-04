@@ -11,6 +11,7 @@ namespace My {
 	/*
 		TODO:
 		- Debo implementar reconexiones
+		- Tal vez debería hacer una clase aparte para la zona muerta? Aplicarla antes de enviarla?
 	*/
 
 	/// @brief Clase que permite una conexión TCP que recibe datos de un mando de Xbox, también implementa una zona muerta

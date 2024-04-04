@@ -25,7 +25,6 @@ namespace My {
         DigitalOutput& operator=(const DigitalOutput&) = default;
         DigitalOutput& operator=(DigitalOutput&&) noexcept = default;
 
-
         /// @brief Activa el pin almacenado
         void activate();
 
