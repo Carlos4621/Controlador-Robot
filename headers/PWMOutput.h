@@ -47,7 +47,7 @@ namespace My {
 
         void claimOutput();
         void writeHelper(const float& dutyCycle);
-    }
+    };
 }
 
 #endif // !PWM_OUTPUT_HEADER
