@@ -2,11 +2,11 @@
 #ifndef HW039_CONTROLLER_HEADER
 #define HW039_CONTROLLER_HEADER
 
-#include <lgpio.h>
-#include <cstdint>
+#include "PWMOutput.h"
 
 namespace My{
 
+    /// @brief Struct con los parámetros de la clase HW039Controller
     struct HW039ControllerParams {
         int chipNumber;
         uint8_t RPWMPin;
@@ -14,34 +14,33 @@ namespace My{
         float frecuency;
     };
     
-
     /// @brief Clase que permite el manejo de un driver de motores HW-039, la aplicacion de
     /// pulsos PWM tarda un instante en aplicar, tenlo en cuenta
     class HW039Controller {
     public:
 
         /// @brief Constructor base
-        /// @param chipNumnber Numero del chip a controlar, se consigue con lgGpiochipOpen(n)
+        /// @param chipNumber Numero del chip a controlar, se consigue con lgGpiochipOpen(n)
         /// @param RPWMPin Salida que conecta a el pin RPWM
         /// @param LWPMPin Salida que conecta a el pin LPWM
         /// @param frecuency Resolucion del PWM
-        HW039Controller(const int& chipNumnber, const uint8_t& RPWMPin,
+        HW039Controller(const int& chipNumber, const uint8_t& RPWMPin,
             const uint8_t& LWPMPin, const float& frecuency);
 
-        /// @brief Constructor con paquete de parametros
-        /// @param params Parametros para el controlador
-        explicit HW039Controller(const HW039ControllerParams& params);
+        /// @brief Constructor con paquete de parámetros
+        /// @param params Paquete de los parámetros a usar
+        HW039Controller(const HW039ControllerParams& params);
 
         HW039Controller(const HW039Controller&) = default;
         HW039Controller(HW039Controller&&) noexcept = default;
 
-        virtual ~HW039Controller() noexcept;
+        virtual ~HW039Controller() noexcept = default;
 
         HW039Controller& operator=(const HW039Controller&) = default;
         HW039Controller& operator=(HW039Controller&&) noexcept = default;
 
         /// @brief Apaga las dos salidas
-        void stopMotor() const noexcept;
+        void stopMotor() noexcept;
 
         /// @brief Envia el porcentaje deseado a el pin RPWM
         /// @param speed Porcentaje del duty cycle
@@ -59,14 +58,12 @@ namespace My{
         void setRelative(const float& relativeSpeed);
 
     private:
-        HW039ControllerParams params_m;
 
-        void claimOutputs();
+        PWMOutput RPWMPin_m;
+        PWMOutput LPWMPin_m;
 
-        void stopHorary() const noexcept;
-        void stopAntiHorary() const noexcept;
-
-        void motorHelper(const bool&, const float&) const;
+        void stopHorary() noexcept;
+        void stopAntiHorary() noexcept;
     };
 }
 

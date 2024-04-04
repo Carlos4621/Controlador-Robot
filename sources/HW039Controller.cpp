@@ -2,33 +2,27 @@
 #include <stdexcept>
 
 My::HW039Controller::HW039Controller(const int &chipNumnber, const uint8_t &RPWMPin,
- const uint8_t &LWPMPin, const float &frecuency) : 
-    HW039Controller{ {chipNumnber, RPWMPin, LWPMPin, frecuency} } {
+ const uint8_t &LPWMPin, const float &frecuency) : 
+    RPWMPin_m{ chipNumnber, RPWMPin, frecuency }, LPWMPin_m{ chipNumnber, LPWMPin, frecuency } {
 }
 
-My::HW039Controller::HW039Controller(const HW039ControllerParams &params) : params_m{params} {
-    claimOutputs();
+My::HW039Controller::HW039Controller(const HW039ControllerParams &params) : 
+    HW039Controller{ params.chipNumber, params.RPWMPin, params.LPWMPin, params.frecuency } {
 }
 
-My::HW039Controller::~HW039Controller() noexcept {
-    for (const auto &i : {params_m.RPWMPin, params_m.LPWMPin}) {
-        lgGpioFree(params_m.chipNumber, i);
-    }
-}
-
-void My::HW039Controller::stopMotor() const noexcept {
+void My::HW039Controller::stopMotor() noexcept {
     stopHorary();
     stopAntiHorary();
 }
 
 void My::HW039Controller::setHorary(const float& speed) {
     stopAntiHorary();
-    motorHelper(true, speed);
+    RPWMPin_m.set(speed);
 }
 
 void My::HW039Controller::setAntihorary(const float& speed) {
     stopHorary();
-    motorHelper(false, speed);
+    LPWMPin_m.set(speed);
 }
 
 void My::HW039Controller::setRelative(const float &relativeSpeed) {
@@ -43,26 +37,10 @@ void My::HW039Controller::setRelative(const float &relativeSpeed) {
     }
 }
 
-void My::HW039Controller::claimOutputs() {
-    for(const auto& i : {params_m.RPWMPin, params_m.LPWMPin}) {
-        if (lgGpioClaimOutput(params_m.chipNumber, 0, i, 0) != LG_OKAY) {
-            throw std::runtime_error{"Unable to claim the outputs"};
-        }
-    }
+void My::HW039Controller::stopHorary() noexcept {
+    RPWMPin_m.desactivate();
 }
 
-void My::HW039Controller::stopHorary() const noexcept {
-    motorHelper(true, 0.f);
-}
-
-void My::HW039Controller::stopAntiHorary() const noexcept {
-    motorHelper(false, 0.f);
-}
-
-// Tal vez esto hace que haya delay en el manejo (por confirmar)
-void My::HW039Controller::motorHelper(const bool &horary, const float& speed) const {
-    if (lgTxPwm(params_m.chipNumber, (horary ? params_m.RPWMPin : params_m.LPWMPin), 
-            (speed == 0.f ? 1.f : params_m.frecuency), speed, 0, 0) != LG_OKAY) {
-        throw std::runtime_error{ "Unable to manage the motor" };
-    }
+void My::HW039Controller::stopAntiHorary() noexcept {
+    LPWMPin_m.desactivate();
 }
