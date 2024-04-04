@@ -66,7 +66,7 @@ namespace My{
         void stopHorary() const noexcept;
         void stopAntiHorary() const noexcept;
 
-        void motorHelper(const bool&, const float&) const noexcept;
+        void motorHelper(const bool&, const float&) const;
     };
 }
 

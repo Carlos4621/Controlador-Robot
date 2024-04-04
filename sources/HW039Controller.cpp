@@ -60,7 +60,7 @@ void My::HW039Controller::stopAntiHorary() const noexcept {
 }
 
 // Tal vez esto hace que haya delay en el manejo (por confirmar)
-void My::HW039Controller::motorHelper(const bool &horary, const float& speed) const noexcept {
+void My::HW039Controller::motorHelper(const bool &horary, const float& speed) const {
     if (lgTxPwm(params_m.chipNumber, (horary ? params_m.RPWMPin : params_m.LPWMPin), 
             (speed == 0.f ? 1.f : params_m.frecuency), speed, 0, 0) != LG_OKAY) {
         throw std::runtime_error{ "Unable to manage the motor" };
