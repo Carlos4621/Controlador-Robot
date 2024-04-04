@@ -13,14 +13,16 @@ namespace My {
 		- Debo implementar reconexiones
 	*/
 
-	/// @brief Clase que permite una coexi�n TCP que recibe datos de un mando de Xbox
+	/// @brief Clase que permite una conexión TCP que recibe datos de un mando de Xbox, también implementa una zona muerta
 	class WiFiXboxReceiver : private WiFiDeserializer {
 	public:
 
 		/// @brief Constructor base
-		/// @param serverParams Par�metros del servido
-		/// @param context Contexto del OS
-		WiFiXboxReceiver(const ServerParams& serverParams, boost::asio::io_context& context);
+		/// @param serverParams Parámetros del servido
+		/// @param context Contexto del E/S
+		/// @param XAxisDeadZone Zona muerta en el XAxis, si no se supera, se asigna 0. Por defecto = 0
+		/// @param YAxisDeadZone Zona muerta en el YAxis, si no se supera, se asigna 0. Por defecto = 0
+		WiFiXboxReceiver(const ServerParams& serverParams, boost::asio::io_context& context, const float& XAxisDeadZone = 0, const float& YAxisDeadZone = 0);
 
 		WiFiXboxReceiver(const WiFiXboxReceiver&) = default;
 		WiFiXboxReceiver(WiFiXboxReceiver&&) noexcept = default;
@@ -38,12 +40,17 @@ namespace My {
 		void receiveControllerData();
 
 		/// @brief Obtiene los datos recibidos
-		/// @return El �ltimo dato recibido del cliente
-		[[nodiscard]] XboxControllerData getControllerData() const;
+		/// @return El último dato recibido del cliente
+		[[nodiscard]] XboxControllerData getControllerData() const noexcept;
 
 	private:
 
 		XboxControllerData controllerData_m;
+		std::pair<float, float> deadZone_m;
+
+		void verifyDeadZone();
+
+		void applyDeadZone(std::pair<float, float>& stick) noexcept;
 	};
 }
 
