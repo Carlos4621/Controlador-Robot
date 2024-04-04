@@ -43,8 +43,7 @@ void My::HW039Controller::setRelative(const float &relativeSpeed) {
     }
 }
 
-void My::HW039Controller::claimOutputs()
-{
+void My::HW039Controller::claimOutputs() {
     for(const auto& i : {params_m.RPWMPin, params_m.LPWMPin}) {
         if (lgGpioClaimOutput(params_m.chipNumber, 0, i, 0) != LG_OKAY) {
             throw std::runtime_error{"Unable to claim the outputs"};
@@ -60,9 +59,10 @@ void My::HW039Controller::stopAntiHorary() const noexcept {
     motorHelper(false, 0.f);
 }
 
+// Tal vez esto hace que haya delay en el manejo (por confirmar)
 void My::HW039Controller::motorHelper(const bool &horary, const float& speed) const noexcept {
     if (lgTxPwm(params_m.chipNumber, (horary ? params_m.RPWMPin : params_m.LPWMPin), 
             (speed == 0.f ? 1.f : params_m.frecuency), speed, 0, 0) != LG_OKAY) {
-        std::runtime_error{"Unable to manage the motor"};
+        throw std::runtime_error{ "Unable to manage the motor" };
     }
 }
