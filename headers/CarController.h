@@ -9,7 +9,6 @@ namespace My {
 
     /*
         TODO:
-        - Hacer un movimiento curvo aparte del giro a 90 grados
         - Implementar una zona muerta
     */
 

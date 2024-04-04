@@ -39,7 +39,7 @@ namespace My {
 
 		/// @brief Obtiene los datos recibidos
 		/// @return El �ltimo dato recibido del cliente
-		XboxControllerData getControllerData() const;
+		[[nodiscard]] XboxControllerData getControllerData() const;
 
 	private:
 
