@@ -29,14 +29,14 @@ namespace My {
 
         virtual ~CarController() noexcept = default;
 
-        /// @brief Aplica los ultimos valores leidos de receiveData()
+        /// @brief Aplica los ultimos valores leidos de receiveControllerData()
         void applyChanges();
 
     private:
 
         HW039Controller rightMotor_m;
         HW039Controller leftMotor_m;
-
+        
     };
 
 }
