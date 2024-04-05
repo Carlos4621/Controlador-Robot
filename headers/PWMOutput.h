@@ -2,20 +2,17 @@
 #ifndef PWM_OUTPUT_HEADER
 #define PWM_OUTPUT_HEADER
 
-#include <cstdint>
-#include <lgpio.h>
-#include <stdexcept>
+#include "OutputPin.h"
 
 namespace My {
 
     /*
         TODO:
         - Si el problema del delay persiste, cambiar a hardware PWM
-        - Tal vez pueda hacer una abstracción de una clase llamada OutputPin para ahorrar código duplicado
     */
 
     /// @brief Clase que se encarga de manjerar salidas PWM, tiene un retraso de aplicación, tener en cuenta
-    class PWMOutput {
+    class PWMOutput : public OutputPin {
     public:
 
         /// @brief Constructor base
@@ -27,7 +24,7 @@ namespace My {
         PWMOutput(const PWMOutput&) = default;
         PWMOutput(PWMOutput&&) noexcept = default; 
 
-        virtual ~PWMOutput() noexcept;
+        virtual ~PWMOutput() noexcept = default;
 
         PWMOutput& operator=(const PWMOutput&) = default;
         PWMOutput& operator=(PWMOutput&&) noexcept = default;
@@ -41,11 +38,8 @@ namespace My {
 
     private:
 
-        int chipNumber_m;
-        uint8_t pin_m;
         float frecuency_m;
 
-        void claimOutput();
         void writeHelper(const float& dutyCycle);
     };
 }

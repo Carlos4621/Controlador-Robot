@@ -2,7 +2,7 @@
 #include <stdexcept>
 
 My::HW039Controller::HW039Controller(const int &chipNumnber, const uint8_t &RPWMPin,
- const uint8_t &LPWMPin, const float &frecuency) : 
+    const uint8_t &LPWMPin, const float &frecuency) : 
     RPWMPin_m{ chipNumnber, RPWMPin, frecuency }, LPWMPin_m{ chipNumnber, LPWMPin, frecuency } {
 }
 
