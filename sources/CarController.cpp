@@ -14,9 +14,9 @@ void My::CarController::applyChanges() {
     rightMotor_m.setRelative(controllerData.leftStick.second);
     leftMotor_m.setRelative(controllerData.leftStick.second);
   }
-  else if (controllerData.leftStick.first > 0 || controllerData.leftStick.first > 0) {
-    rightMotor_m.setRelative(controllerData.leftStick.first * (controllerData.leftStick.first < -5 ? -1 : 1));
-    leftMotor_m.setRelative(controllerData.leftStick.first * (controllerData.leftStick.first > 5 ? 1 : -1));
+  else if (controllerData.RB || controllerData.LB) {
+    rightMotor_m.setRelative(65 * (controllerData.RB ? -1 : 1));
+    leftMotor_m.setRelative(65 * (controllerData.LB ? 1 : -1));
   }
   else {
     rightMotor_m.stopMotor();
