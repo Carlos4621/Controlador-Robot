@@ -1,5 +1,4 @@
 #include "WiFiXboxReceiver.h"
-#include <format>
 #include <iostream>
 
 int main() {
@@ -19,7 +18,7 @@ int main() {
         data = receiver.getControllerData();
 
         // Imprimir valores a gusto
-        std::cout << std::format("XAxis = {} | YAxis = {}\n", data.leftStick.first, data.leftStick.second);/* condition */
+        std::cout << data.leftStick.first << '|' << data.leftStick.second << '\n';
 
         cv::waitKey(1);
     }
