@@ -7,11 +7,6 @@
 
 namespace My {
 
-    /*
-        TODO:
-        - Implementar una zona muerta
-    */
-
     /// @brief Clase que permite que cualquier control de Xbox controle dos modulos HW-039
     class CarController : public WiFiXboxReceiver {
     public:

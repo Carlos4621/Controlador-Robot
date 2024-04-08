@@ -6,12 +6,7 @@
 
 namespace My {
 
-    /*
-        TODO:
-        - Si el problema del delay persiste, cambiar a hardware PWM
-    */
-
-    /// @brief Clase que se encarga de manjerar salidas PWM, tiene un retraso de aplicación, tener en cuenta
+    /// @brief Clase que se encarga de manjerar salidas PWM
     class PWMOutput : public OutputPin {
     public:
 

@@ -7,6 +7,7 @@
 
 namespace My {
 
+	/// @brief Struct que contiene todos los datos del control
 	struct XboxControllerData {
 		bool A;
 		bool B;

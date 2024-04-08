@@ -98,7 +98,6 @@ void My::YOLOv8Model::loadClasses(std::string_view path) {
 void My::YOLOv8Model::loadOnnxNetwork(std::string_view path, const bool& cudaEnabled) {
     network_m = cv::dnn::readNetFromONNX(path.data());
 
-    // Usar (?:) ?
     if (cudaEnabled) {
         network_m.setPreferableBackend(cv::dnn::DNN_BACKEND_CUDA);
         network_m.setPreferableTarget(cv::dnn::DNN_TARGET_CUDA);

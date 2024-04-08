@@ -11,6 +11,7 @@
 
 namespace My {
 
+    /// @brief Parámetros para un objeto YOLOv8Model
     struct YOLOv8ModelParams {
         std::string modelPath;
         cv::Size modelInputSize;

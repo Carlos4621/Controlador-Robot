@@ -14,8 +14,7 @@ namespace My{
         float frecuency;
     };
     
-    /// @brief Clase que permite el manejo de un driver de motores HW-039, la aplicacion de
-    /// pulsos PWM tarda un instante en aplicar, tenlo en cuenta
+    /// @brief Clase que permite el manejo de un driver de motores HW-039
     class HW039Controller {
     public:
 
