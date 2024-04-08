@@ -8,6 +8,13 @@
 
 namespace My {
 
+    /*
+        TODO:
+        - Idea? Al hacer pines que tengan el mismo número de chip o, en el caso de PWMOUtput, también su frecuencia, se está desperdiciando por lo menos
+          8 bytes en información duplicada, esto es un problema. Tal vez pueda hacer clases con pines que compartan el mismo chip o, en su dado caso,
+          la frecuencia del pulso PWM
+    */
+
     /// @brief Clase que representa un pin de salida genérico, ideado para la gestión automática de pines
     class OutputPin {
     public:

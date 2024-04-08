@@ -31,3 +31,21 @@ link_target(servidor)
 
 add_executable(hazmat ${SOURCES} tests/inferenceTest.cpp)
 link_target(hazmat)
+
+add_executable(clienteXbox ${SOURCES} tests/cliente/clienteXboxControllerTest.cpp)
+link_target(clienteXbox)
+
+add_executable(servidorXbox ${SOURCES} tests/servidor/servidorXboxControllerTest.cpp)
+link_target(servidorXbox)
+
+add_executable(clienteCamera ${SOURCES} tests/cliente/clienteWiFiCameraTest.cpp)
+link_target(clienteCamera)
+
+add_executable(servidorCamera ${SOURCES} tests/servidor/servidorWiFiCameraTest.cpp)
+link_target(servidorCamera)
+
+add_executable(clienteCarController ${SOURCES} tests/cliente/clienteCarControllerTest.cpp)
+link_target(clienteCarController)
+
+add_executable(servidorCarController ${SOURCES} tests/servidor/servidorCarControllerTest.cpp)
+link_target(servidorCarController)
