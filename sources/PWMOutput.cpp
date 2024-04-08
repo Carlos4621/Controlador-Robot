@@ -13,7 +13,7 @@ void My::PWMOutput::desactivate() {
 }
 
 void My::PWMOutput::writeHelper(const float& dutyCycle) {
-    if (lgTxPwm(getChipNumber(), getPinNumber(), frecuency_m, dutyCycle, 0, 0) != LG_OKAY) {
+    if (lgTxPwm(getChipNumber(), getPinNumber(), frecuency_m, dutyCycle, 0, 0) < 0) {
         throw std::runtime_error{ "Unable to manage the output" };
     }
 }

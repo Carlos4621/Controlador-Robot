@@ -18,7 +18,7 @@ int My::OutputPin::getChipNumber() const noexcept {
 }
 
 void My::OutputPin::claimOutput() {
-    if (lgGpioClaimOutput(chipNumber_m, 0, pin_m, LG_LOW) != LG_OKAY) {
+    if (lgGpioClaimOutput(chipNumber_m, 0, pin_m, LG_LOW) < 0) {
         throw std::runtime_error{ "Unable to claim the output" };
     }
 }

@@ -17,7 +17,7 @@ void My::DigitalOutput::toggle() {
 }
 
 void My::DigitalOutput::set(const bool &newState) {
-    if (lgGpioWrite(getChipNumber(), getPinNumber(), newState) != LG_OKAY) {
+    if (lgGpioWrite(getChipNumber(), getPinNumber(), newState) < 0) {
         throw std::runtime_error{ "Unable to manage the pin" };
     }
     
