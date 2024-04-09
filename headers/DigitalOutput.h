@@ -9,7 +9,7 @@ namespace My {
     /// @brief Clase que se encarga de manejar un pin de salidas digitales
     class DigitalOutput : public OutputPin {
     public:
-    
+
         using OutputPin::OutputPin;
 
         virtual ~DigitalOutput() noexcept = default;
@@ -32,7 +32,7 @@ namespace My {
 
         /// @brief Determina si el pin está actualmente activo
         /// @return Estado actual del pin
-        bool isActivated() const noexcept;
+        [[nodiscard]] bool isActivated() const noexcept;
 
     private:
 

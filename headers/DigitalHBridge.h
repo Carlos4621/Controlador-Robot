@@ -6,12 +6,12 @@
 
 namespace My {
 
+    /// @brief Struct que contiene los parámetros a de la clase DigitalHBridge
     struct DigitalHBridgeParams {
         int chipNumber;
         uint8_t horaryPin;
         uint8_t antihoraryPin;
     };
-    
 
     /// @brief Clase que permite el control de un puente H de forma digital (sin control de velocidad)
     class DigitalHBridge {
@@ -54,4 +54,4 @@ namespace My {
     };
 }
 
-#endif DIGITAL_H_BRIDGE_HEADER
+#endif // !DIGITAL_H_BRIDGE_HEADER
