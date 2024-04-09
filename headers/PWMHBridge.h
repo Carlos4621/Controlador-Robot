@@ -9,22 +9,22 @@ namespace My{
     /// @brief Struct con los parámetros de la clase PWMHBridge
     struct PWMHBridgeParams {
         int chipNumber;
-        uint8_t RPWMPin;
-        uint8_t LPWMPin;
+        uint8_t horaryPin;
+        uint8_t antihoraryPin;
         float frecuency;
     };
     
-    /// @brief Clase que permite el manejo de un driver de motores HW-039
+    /// @brief Clase que permite el manejo de un puente H de forma analógica (con control de velocidad de motor)
     class PWMHBridge {
     public:
 
         /// @brief Constructor base
         /// @param chipNumber Numero del chip a controlar, se consigue con lgGpiochipOpen(n)
-        /// @param RPWMPin Salida que conecta a el pin RPWM
-        /// @param LWPMPin Salida que conecta a el pin LPWM
+        /// @param horaryPin Número del pin GPIO que conecta a el pin que controla el giro horario
+        /// @param antihoraryPin Número del pin GPIO que conecta a el pin que controla el giro antihorario
         /// @param frecuency Resolucion del PWM
-        PWMHBridge(const int& chipNumber, const uint8_t& RPWMPin,
-            const uint8_t& LWPMPin, const float& frecuency);
+        PWMHBridge(const int& chipNumber, const uint8_t& horaryPin,
+            const uint8_t& antihoraryPin, const float& frecuency);
 
         /// @brief Constructor con paquete de parámetros
         /// @param params Paquete de los parámetros a usar
@@ -38,28 +38,28 @@ namespace My{
         PWMHBridge& operator=(const PWMHBridge&) = default;
         PWMHBridge& operator=(PWMHBridge&&) noexcept = default;
 
-        /// @brief Apaga las dos salidas
+        /// @brief Detiene al motor
         void stopMotor() noexcept;
 
-        /// @brief Envia el porcentaje deseado a el pin RPWM
-        /// @param speed Porcentaje del duty cycle
+        /// @brief Establece el duty cycle del PWM para el giro horario, esto se traduce en velocidad del motor
+        /// @param speed Porcentaje del duty cycle a establecer
         void setHorary(const float& speed);
 
-        /// @brief Enva el porcentaje deseado a el pin LPWM
-        /// @param speed Porcentaje del duty cycle
+        /// @brief Establece el duty cycle del PWM para el giro antihorario, esto se traduce en velocidad del motor
+        /// @param speed Porcentaje del duty cycle a establecer
         void setAntihorary(const float& speed);
 
-        /// @brief Envia el porcentaje deseado al pin PWM siguiendo estas condiciones:
+        /// @brief Envia el porcentaje deseado al pin horario o antihorario siguiendo estas condiciones:
         ///        si x > 0 entonces this->setHorary(x)
         ///        si x < 0 entonces this->setAntihorary(std::abs(x))
         ///        de otra manera this->stopMotors()
-        /// @param relativeSpeed 
+        /// @param relativeSpeed Número que representa el porcentaje del duty cycle y lo aplica según las condiciones establecidas
         void setRelative(const float& relativeSpeed);
 
     private:
 
-        PWMOutput RPWMPin_m;
-        PWMOutput LPWMPin_m;
+        PWMOutput horaryPin_m;
+        PWMOutput antihoraryPin_m;
 
         void stopHorary() noexcept;
         void stopAntiHorary() noexcept;
