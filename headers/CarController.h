@@ -3,7 +3,7 @@
 #define CAR_CONTROLLER_HEADER
 
 #include "WiFiXboxReceiver.h"
-#include "HW039Controller.h"
+#include "PWMHBridge.h"
 
 namespace My {
 
@@ -17,7 +17,7 @@ namespace My {
         /// @param rightMotor Paquete de parametros para el motor derecho
         /// @param leftMotor Paquete de parametros para el motor izquierdo
         CarController(const ServerParams& serverParams, boost::asio::io_context& ioContext, 
-        const HW039ControllerParams& rightMotor, const HW039ControllerParams& leftMotor);
+        const PWMHBridgeParams& rightMotor, const PWMHBridgeParams& leftMotor);
 
         CarController(const CarController&) = default;
         CarController(CarController&&) noexcept = default;
@@ -29,8 +29,8 @@ namespace My {
 
     private:
 
-        HW039Controller rightMotor_m;
-        HW039Controller leftMotor_m;
+        PWMHBridge rightMotor_m;
+        PWMHBridge leftMotor_m;
         
     };
 

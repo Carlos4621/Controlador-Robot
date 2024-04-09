@@ -16,8 +16,8 @@ int main() {
     }
 
     // Cambiar
-    My::HW039ControllerParams rightMotor{ chip, 17, 27, 10000 };
-    My::HW039ControllerParams leftMotor{ chip, 23, 24, 10000 };
+    My::PWMHBridgeParams rightMotor{ chip, 17, 27, 10000 };
+    My::PWMHBridgeParams leftMotor{ chip, 23, 24, 10000 };
 
     My::CarController controller{ connectionData, context, rightMotor, leftMotor };
 

@@ -1,8 +1,8 @@
 #include "CarController.h"
 
 My::CarController::CarController(const ServerParams &serverParams, 
-boost::asio::io_context &ioContext, const HW039ControllerParams &rightMotor,
- const HW039ControllerParams &leftMotor) : WiFiXboxReceiver{ serverParams, ioContext },
+boost::asio::io_context &ioContext, const PWMHBridgeParams &rightMotor,
+ const PWMHBridgeParams &leftMotor) : WiFiXboxReceiver{ serverParams, ioContext },
   rightMotor_m{ rightMotor }, leftMotor_m{ leftMotor } {
 }
 

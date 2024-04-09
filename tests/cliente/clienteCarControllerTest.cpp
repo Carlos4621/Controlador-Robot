@@ -3,7 +3,7 @@
 int main() {
 
     // Cambiar dependiendo a conexión
-    My::ServerParams connectionData{ "ip", "port" };
+    My::ServerParams connectionData{ "10.100.105.75", "50000" };
 
     boost::asio::io_context context;
 

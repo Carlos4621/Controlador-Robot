@@ -1,13 +1,13 @@
 #pragma once
-#ifndef HW039_CONTROLLER_HEADER
-#define HW039_CONTROLLER_HEADER
+#ifndef PWM_H_BRIDGE_HEADER
+#define PWM_H_BRIDGE_HEADER
 
 #include "PWMOutput.h"
 
 namespace My{
 
-    /// @brief Struct con los parámetros de la clase HW039Controller
-    struct HW039ControllerParams {
+    /// @brief Struct con los parámetros de la clase PWMHBridge
+    struct PWMHBridgeParams {
         int chipNumber;
         uint8_t RPWMPin;
         uint8_t LPWMPin;
@@ -15,7 +15,7 @@ namespace My{
     };
     
     /// @brief Clase que permite el manejo de un driver de motores HW-039
-    class HW039Controller {
+    class PWMHBridge {
     public:
 
         /// @brief Constructor base
@@ -23,20 +23,20 @@ namespace My{
         /// @param RPWMPin Salida que conecta a el pin RPWM
         /// @param LWPMPin Salida que conecta a el pin LPWM
         /// @param frecuency Resolucion del PWM
-        HW039Controller(const int& chipNumber, const uint8_t& RPWMPin,
+        PWMHBridge(const int& chipNumber, const uint8_t& RPWMPin,
             const uint8_t& LWPMPin, const float& frecuency);
 
         /// @brief Constructor con paquete de parámetros
         /// @param params Paquete de los parámetros a usar
-        HW039Controller(const HW039ControllerParams& params);
+        PWMHBridge(const PWMHBridgeParams& params);
 
-        HW039Controller(const HW039Controller&) = default;
-        HW039Controller(HW039Controller&&) noexcept = default;
+        PWMHBridge(const PWMHBridge&) = default;
+        PWMHBridge(PWMHBridge&&) noexcept = default;
 
-        virtual ~HW039Controller() noexcept = default;
+        virtual ~PWMHBridge() noexcept = default;
 
-        HW039Controller& operator=(const HW039Controller&) = default;
-        HW039Controller& operator=(HW039Controller&&) noexcept = default;
+        PWMHBridge& operator=(const PWMHBridge&) = default;
+        PWMHBridge& operator=(PWMHBridge&&) noexcept = default;
 
         /// @brief Apaga las dos salidas
         void stopMotor() noexcept;
