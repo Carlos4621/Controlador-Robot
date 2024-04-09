@@ -9,14 +9,8 @@ namespace My {
     /// @brief Clase que se encarga de manejar un pin de salidas digitales
     class DigitalOutput : public OutputPin {
     public:
-
-        /// @brief Contructor base
-        /// @param chipNumber Número del chip GPIO a controlar, se consigue con (...)
-        /// @param pin Número del pin GPIO a controlar
-        DigitalOutput(const int& chipNumber, const uint8_t& pin);
-
-        DigitalOutput(const DigitalOutput&) = default;
-        DigitalOutput(DigitalOutput&&) noexcept = default;
+    
+        using OutputPin::OutputPin;
 
         virtual ~DigitalOutput() noexcept = default;
 

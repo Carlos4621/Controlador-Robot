@@ -1,15 +1,13 @@
 #include "DigitalOutput.h"
 
-My::DigitalOutput::DigitalOutput(const int & chipNumber, const uint8_t & pin) : 
-    OutputPin{ chipNumber, pin } {
-}
-
 void My::DigitalOutput::activate() {
     this->set(true);
+    state_m = true;
 }
 
 void My::DigitalOutput::desactivate() {
     this->set(false);
+    state_m = false;
 }
 
 void My::DigitalOutput::toggle() {
