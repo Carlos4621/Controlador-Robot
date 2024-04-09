@@ -21,11 +21,11 @@ void My::WiFiXboxReceiver::verifyDeadZone() {
 }
 
 void My::WiFiXboxReceiver::applyDeadZone(std::pair<float, float> &stick) noexcept {
-	if (stick.first < deadZone_m.first) {
+	if (std::abs(stick.first) < deadZone_m.first) {
 		stick.first = 0;
 	}
 
-	if (stick.second < deadZone_m.second) {
+	if (std::abs(stick.second) < deadZone_m.second) {
 		stick.second = 0;
 	}
 }
