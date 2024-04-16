@@ -3,9 +3,10 @@
 #define WIFI_SERIALIZER_HEADER
 
 #include "ServerParams.h"
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/array.hpp>
 #include <boost/asio.hpp>
 #include <boost/archive/text_oarchive.hpp>
-#include <boost/serialization/vector.hpp>
 #include <opencv2/opencv.hpp>
 
 namespace My {

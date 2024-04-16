@@ -7,8 +7,6 @@ My::WiFiXboxReceiver::WiFiXboxReceiver(const ServerParams& serverParams, boost::
 
 void My::WiFiXboxReceiver::receiveControllerData() {
 	receiveData(controllerData_m);
-
-	verifyDeadZone();
 }
 
 My::XboxControllerData My::WiFiXboxReceiver::getControllerData() const noexcept {

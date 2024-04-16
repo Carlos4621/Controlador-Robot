@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(headers)
 
-file(GLOB SOURCES "sources/*.cpp")
+file(GLOB SOURCES "sources/*.c" "sources/*.cpp")
 
 find_package(OpenCV REQUIRED)
 find_package(Boost REQUIRED COMPONENTS serialization)
@@ -43,3 +43,9 @@ link_target(clienteCarController)
 
 add_executable(servidorCarController ${SOURCES} tests/servidor/servidorCarControllerTest.cpp)
 link_target(servidorCarController)
+
+add_executable(clienteThermalCamera ${SOURCES} tests/cliente/clienteThermalCamera.cpp)
+link_target(clienteThermalCamera)
+
+add_executable(serverThermalCamera ${SOURCES} tests/servidor/servidorThermalCamera.cpp)
+link_target(serverThermalCamera)

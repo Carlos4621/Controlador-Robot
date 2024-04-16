@@ -10,13 +10,13 @@ boost::asio::io_context &ioContext, const PWMHBridgeParams &rightMotor,
 void My::CarController::applyChanges() {
   const auto controllerData{ getControllerData() };
 
-  if (controllerData.leftStick.second > 0 || controllerData.leftStick.second > 0) {
+  if (controllerData.leftStick.second != 0 || controllerData.leftStick.second != 0) {
     rightMotor_m.setRelative(controllerData.leftStick.second);
     leftMotor_m.setRelative(controllerData.leftStick.second);
   }
   else if (controllerData.RB || controllerData.LB) {
     rightMotor_m.setRelative(65 * (controllerData.RB ? -1 : 1));
-    leftMotor_m.setRelative(65 * (controllerData.LB ? 1 : -1));
+    leftMotor_m.setRelative(65 * (controllerData.RB ? 1 : -1));
   }
   else {
     rightMotor_m.stopMotor();

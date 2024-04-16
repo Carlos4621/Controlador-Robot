@@ -4,7 +4,7 @@
 int main() {
 
     //Cambiar
-    My::ServerParams connectionData{ "ip", "port" };
+    My::ServerParams connectionData{ "ip", "50000" };
 
     boost::asio::io_context context;
 
