@@ -16,7 +16,7 @@ void My::DigitalHBridge::setHorary() noexcept {
 
 void My::DigitalHBridge::setAntihorary() noexcept {
     stopHorary();
-    horaryPin_m.activate();
+    antihoraryPin_m.activate();
 }
 
 void My::DigitalHBridge::stopHorary() noexcept {
